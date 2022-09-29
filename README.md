@@ -1,18 +1,12 @@
-# Fuzzy-GBR-algorithm
-FyzzyGBR – a gradient boosting regression software with fuzzy target values
+### "fyzzyGBR.py" – a basic gradient boosting regression module with fuzzy target values (v1.1.0) ###
+### The other "load_prepare.py" module is used to load, normalize the datasets and fuzzyfy targets ### 
 
 
-The Anaconda Python JupyterLab should be used for running the notebook.
-The fuzzyGBR() function on the main module FuzzyGBR.ipynb of the program should be called as follows:
-
-fuzzyGBR(dataset, defuz_method = "MOM", max_left_spread = 0.2, max_right_spread = 0.2, 
-         distance = "D4", M = 201, learning_rate = 0.1, tree_depth = 1)
-	
+#The constructor of the FuzzyGBR model
+FuzzyGBR(defuz_method = "MOM", opt_index=0.5, distance="D1", 
+                 boost_iterations = 100, learning_rate = 0.1, tree_depth = 1)
 
 """  Parameters
-
-dataset - is the dataset to handle ("iris", "cars", "diabetes", "boston", "penguins", "planets", 
-        "diamonds", "mpg", "tips", taxis")
 	
 defuz_method - the defuzzification method: 
 
@@ -43,4 +37,70 @@ learning_rate - the learning rate of boosting iterations,
 tree_depth - the depth of the stump trees.
 
 """
+The Anaconda Python JupyterLab should be tested for running the fuzzyGBR notebook.
+The model contains the following functions:
 
+# initialization of the model
+model = FuzzyGBR(defuz_method = "WABL", opt_index=0.5, distance = "D4", boost_iterations = 100, 
+               learning_rate = 0.1, tree_depth = 1)
+
+# print model parameters
+model.print_parameters()
+
+# model fitting according to the fuzzy targets
+model.fit(self, X_train,y_train)
+
+# predict of fuzzyGBR results for input X
+predicted = model.predict(X)
+
+#==================================================================
+# Functions to perform operations containing fuzzy numbers:
+
+# Defuzzification of th FN A. cc is the optimizm parameter.
+defuz(defuz_method,A,cc)
+
+# The RMSE value of the predictions
+fuzRMSE(defuz_method,distance,a,b,cc)
+
+# The MAPE value of the predictions
+fuzMAPE(defuz_method,distance,a,b,cc)
+
+# The R-squared value of the predictions
+fuzR2(defuz_method,distance,a,b,ave,cc)
+
+# Defuzzification for Fuzzy Number
+# only the required defuzzification method should be uncommented
+defuz(defuz_method,A,cc)
+
+# Center of Area defuzzification for Fuzzy Number
+COG(A)
+
+# WABL defuzzification for Fuzzy Number
+WABL(A,cc=0.5)
+
+# Mean of the Maxima defuzzification for Fuzzy Number
+MOM(A)
+
+# fuzzy average of fuzzy numbers
+def fuzAve(a,cc):
+
+# distance between fuzzy numbers
+def fuzDist(defuz_method,distance,a,b,cc):
+
+# Calculating of RMSE value according to fuzzy numbers
+def fuzRMSE(defuz_method,distance,a,b,cc):
+
+# Calculating of MAPE value according to fuzzy numbers
+def fuzMAPE(defuz_method,distance,a,b,cc):
+
+# Calculating of R-squared value according to given average of fuzzy numbers
+def fuzR2(defuz_method,distance,a,b,ave,cc):
+
+# Fuzzy Subtraction A-B of fuzzy numbers
+def fuzSubtr(a,b,cc):
+
+# Fuzzy Addition A+B of fuzzy numbers
+def fuzAdd(a,b,cc):
+
+# Multiplication of fuzzy number A by scalar b
+def fuzMultBy(a,b,cc):
