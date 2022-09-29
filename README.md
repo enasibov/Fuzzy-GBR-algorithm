@@ -37,6 +37,7 @@ learning_rate - the learning rate of boosting iterations,
 tree_depth - the depth of the stump trees.
 
 """
+
 The Anaconda Python JupyterLab should be tested for running the fuzzyGBR notebook.
 The model contains the following functions:
 
